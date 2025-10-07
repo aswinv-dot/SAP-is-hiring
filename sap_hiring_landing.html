@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAP is Hiring - 400+ Jobs Available</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #00215c 0%, #255cc1 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 500px;
+            width: 100%;
+            padding: 50px 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, #f1c819, #9acbfd, #255cc1);
+        }
+
+        h1 {
+            color: #00215c;
+            font-size: 2.2em;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .subtitle {
+            color: #255cc1;
+            font-size: 1.3em;
+            text-align: center;
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+
+        .highlight {
+            color: #00215c;
+            background: #f1c819;
+            padding: 2px 8px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            color: #00215c;
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 0.95em;
+        }
+
+        input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #9acbfd;
+            border-radius: 10px;
+            font-size: 1em;
+            transition: all 0.3s ease;
+            outline: none;
+        }
+
+        input:focus {
+            border-color: #255cc1;
+            box-shadow: 0 0 0 3px rgba(37, 92, 193, 0.1);
+        }
+
+        input.error {
+            border-color: #e74c3c;
+        }
+
+        .error-message {
+            color: #e74c3c;
+            font-size: 0.85em;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .error-message.show {
+            display: block;
+        }
+
+        button {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #255cc1, #00215c);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(37, 92, 193, 0.4);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        .footer-links {
+            text-align: center;
+            margin-top: 25px;
+            font-size: 0.85em;
+            color: #666;
+        }
+
+        .footer-links a {
+            color: #255cc1;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #00215c;
+            text-decoration: underline;
+        }
+
+        /* Thank You Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 33, 92, 0.95);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal.show {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 50px 40px;
+            border-radius: 20px;
+            text-align: center;
+            max-width: 400px;
+            animation: slideIn 0.4s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .checkmark {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: #f1c819;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            animation: scaleIn 0.5s ease;
+        }
+
+        @keyframes scaleIn {
+            from {
+                transform: scale(0);
+            }
+            to {
+                transform: scale(1);
+            }
+        }
+
+        .checkmark svg {
+            width: 40px;
+            height: 40px;
+            stroke: white;
+            stroke-width: 3;
+            fill: none;
+        }
+
+        .modal h2 {
+            color: #00215c;
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        .modal p {
+            color: #666;
+            font-size: 1.1em;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 40px 30px;
+            }
+
+            h1 {
+                font-size: 1.8em;
+            }
+
+            .subtitle {
+                font-size: 1.1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>SAP is Hiring</h1>
+        <p class="subtitle">Get access to <span class="highlight">400+</span> recently posted jobs for free</p>
+        
+        <form id="jobForm" action="https://docs.google.com/forms/d/e/1FAIpQLSdZtgawwebaR-zUMMLmP3j_8AplduEXtuBVk0CNXZTjJpnFjA/formResponse" method="POST" target="hidden_iframe">
+            <div class="form-group">
+                <label for="name">Full Name *</label>
+                <input type="text" id="name" name="entry.1164035048" placeholder="Enter your full name" required>
+                <div class="error-message" id="nameError">Please enter a valid name</div>
+            </div>
+
+            <div class="form-group">
+                <label for="phone">Phone Number *</label>
+                <input type="tel" id="phone" name="entry.1792445892" placeholder="Enter 10-digit phone number" required>
+                <div class="error-message" id="phoneError">Please enter a valid 10-digit phone number</div>
+            </div>
+
+            <button type="submit">Get Free Access Now</button>
+        </form>
+        
+        <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
+
+        <div class="footer-links">
+            <a href="https://terratern.com/privacy-policy/" target="_blank">Privacy Policy</a> | 
+            <a href="https://terratern.com/terms-and-condition/" target="_blank">Terms of Service</a>
+        </div>
+    </div>
+
+    <!-- Thank You Modal -->
+    <div class="modal" id="thankYouModal">
+        <div class="modal-content">
+            <div class="checkmark">
+                <svg viewBox="0 0 52 52">
+                    <polyline points="14 27 22 35 38 19" />
+                </svg>
+            </div>
+            <h2>Thank You!</h2>
+            <p>Redirecting you to the job listings...</p>
+        </div>
+    </div>
+
+    <script>
+        const form = document.getElementById('jobForm');
+        const nameInput = document.getElementById('name');
+        const phoneInput = document.getElementById('phone');
+        const nameError = document.getElementById('nameError');
+        const phoneError = document.getElementById('phoneError');
+        const modal = document.getElementById('thankYouModal');
+
+        // Only allow digits in phone input
+        phoneInput.addEventListener('input', function(e) {
+            this.value = this.value.replace(/\D/g, '').slice(0, 10);
+        });
+
+        // Real-time validation
+        nameInput.addEventListener('blur', validateName);
+        phoneInput.addEventListener('blur', validatePhone);
+
+        function validateName() {
+            const name = nameInput.value.trim();
+            if (name.length < 2) {
+                nameInput.classList.add('error');
+                nameError.classList.add('show');
+                return false;
+            } else {
+                nameInput.classList.remove('error');
+                nameError.classList.remove('show');
+                return true;
+            }
+        }
+
+        function validatePhone() {
+            const phone = phoneInput.value.trim();
+            const phoneRegex = /^\d{10}$/;
+            if (!phoneRegex.test(phone)) {
+                phoneInput.classList.add('error');
+                phoneError.classList.add('show');
+                return false;
+            } else {
+                phoneInput.classList.remove('error');
+                phoneError.classList.remove('show');
+                return true;
+            }
+        }
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const isNameValid = validateName();
+            const isPhoneValid = validatePhone();
+
+            if (isNameValid && isPhoneValid) {
+                // Submit to Google Forms
+                const formData = new FormData(form);
+                fetch(form.action, {
+                    method: 'POST',
+                    body: formData,
+                    mode: 'no-cors'
+                }).then(() => {
+                    // Show thank you modal
+                    modal.classList.add('show');
+
+                    // Redirect after 5 seconds
+                    setTimeout(function() {
+                        window.location.href = 'https://terratern.com/document/sap-is-hiring-germany/';
+                    }, 5000);
+                }).catch(() => {
+                    // Even if there's an error, show modal and redirect
+                    modal.classList.add('show');
+                    setTimeout(function() {
+                        window.location.href = 'https://terratern.com/document/sap-is-hiring-germany/';
+                    }, 5000);
+                });
+            }
+        });
+    </script>
+</body>
+</html>
