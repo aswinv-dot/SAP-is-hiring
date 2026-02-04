@@ -75,6 +75,20 @@ border-color:#255cc1;
 outline:none;
 }
 
+input.error{
+border-color:#e74c3c;
+}
+
+.error-message{
+color:#e74c3c;
+font-size:.85em;
+display:none;
+}
+
+.error-message.show{
+display:block;
+}
+
 button{
 width:100%;
 padding:16px;
@@ -111,6 +125,14 @@ font-size:0.9em;
 background:#255cc1;
 color:#fff;
 border-color:#255cc1;
+}
+
+.cta-note{
+text-align:center;
+font-size:.9em;
+color:#00215c;
+margin-bottom:8px;
+font-weight:600;
 }
 
 .modal{
@@ -165,25 +187,28 @@ fill:none;
 action="https://docs.google.com/forms/d/e/1FAIpQLSdZtgawwebaR-zUMMLmP3j_8AplduEXtuBVk0CNXZTjJpnFjA/formResponse"
 method="POST">
 
-<!-- 1. Full Name -->
+<!-- Full Name -->
 <div class="form-group">
 <label>Full Name *</label>
 <input type="text" id="name" name="entry.1164035048" required>
+<div class="error-message" id="nameError">Enter valid name</div>
 </div>
 
-<!-- 2. Mobile -->
+<!-- Mobile -->
 <div class="form-group">
 <label>Mobile Number (Preferably WhatsApp) *</label>
 <input type="tel" id="phone" name="entry.1792445892" required>
+<div class="error-message" id="phoneError">Enter valid 10-digit number</div>
 </div>
 
-<!-- 3. Email -->
+<!-- Email -->
 <div class="form-group">
 <label>Email ID *</label>
-<input type="email" name="entry.1111111111" required>
+<input type="email" id="email" name="entry.1111111111" required>
+<div class="error-message" id="emailError">Enter valid email</div>
 </div>
 
-<!-- 4. Education -->
+<!-- Education -->
 <div class="form-group">
 <label>Educational Qualification *</label>
 <select name="entry.4444444444" required>
@@ -196,7 +221,7 @@ method="POST">
 </select>
 </div>
 
-<!-- 5. Experience -->
+<!-- Experience -->
 <div class="form-group">
 <label>Work Experience *</label>
 <select name="entry.5555555555" required>
@@ -212,7 +237,7 @@ method="POST">
 </select>
 </div>
 
-<!-- 6. Country -->
+<!-- Country -->
 <div class="form-group">
 <label>Country Interested *</label>
 <select name="entry.2222222222" required>
@@ -224,7 +249,7 @@ method="POST">
 </select>
 </div>
 
-<!-- 7. Slot Buttons -->
+<!-- Slot -->
 <div class="form-group">
 <label>Choose the Slot *</label>
 
@@ -260,6 +285,10 @@ method="POST">
 </div>
 </div>
 
+<div class="cta-note">
+Register and Join our WhatsApp Group for Updates on this Event
+</div>
+
 <button type="submit">Register Now</button>
 
 </form>
@@ -274,12 +303,13 @@ method="POST">
 </svg>
 </div>
 <h2>Thank You!</h2>
-<p>Redirecting you...</p>
+<p>Redirecting you to WhatsApp Group...</p>
 </div>
 </div>
 
 <script>
 const phone=document.getElementById("phone");
+const email=document.getElementById("email");
 const form=document.getElementById("jobForm");
 const modal=document.getElementById("thankYouModal");
 
@@ -287,8 +317,18 @@ phone.addEventListener("input",()=>{
 phone.value=phone.value.replace(/\D/g,'').slice(0,10);
 });
 
+function validatePhone(){
+return /^\d{10}$/.test(phone.value);
+}
+
+function validateEmail(){
+return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value);
+}
+
 form.addEventListener("submit",function(e){
 e.preventDefault();
+
+if(validatePhone() && validateEmail()){
 
 const data=new FormData(form);
 
@@ -297,11 +337,18 @@ method:"POST",
 body:data,
 mode:"no-cors"
 }).then(()=>{
+
 modal.classList.add("show");
+
 setTimeout(()=>{
-window.location.href="https://terratern.com/document/sap-is-hiring-germany/";
-},5000);
+window.location.href="https://chat.whatsapp.com/JplilV8E5qo8cp2y9ElWM8";
+},4000);
+
 });
+
+}else{
+alert("Please enter valid phone number and email.");
+}
 });
 </script>
 
