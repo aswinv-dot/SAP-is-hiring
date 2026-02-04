@@ -26,30 +26,19 @@ padding:20px;
 background:#fff;
 border-radius:20px;
 box-shadow:0 20px 60px rgba(0,0,0,.3);
-max-width:500px;
+max-width:520px;
 width:100%;
 padding:50px 40px;
-position:relative;
-}
-
-.container::before{
-content:'';
-position:absolute;
-top:0;left:0;right:0;
-height:6px;
-background:linear-gradient(90deg,#f1c819,#9acbfd,#255cc1);
 }
 
 h1{
 color:#00215c;
-font-size:2.2em;
 text-align:center;
 margin-bottom:10px;
 }
 
 .subtitle{
 color:#255cc1;
-font-size:1.3em;
 text-align:center;
 margin-bottom:30px;
 font-weight:600;
@@ -63,7 +52,7 @@ font-weight:bold;
 }
 
 .form-group{
-margin-bottom:20px;
+margin-bottom:18px;
 }
 
 label{
@@ -79,26 +68,11 @@ padding:14px;
 border:2px solid #9acbfd;
 border-radius:10px;
 font-size:1em;
-outline:none;
 }
 
 input:focus,select:focus{
 border-color:#255cc1;
-box-shadow:0 0 0 3px rgba(37,92,193,.1);
-}
-
-input.error{
-border-color:#e74c3c;
-}
-
-.error-message{
-color:#e74c3c;
-font-size:.85em;
-display:none;
-}
-
-.error-message.show{
-display:block;
+outline:none;
 }
 
 button{
@@ -113,23 +87,32 @@ font-weight:600;
 cursor:pointer;
 }
 
-button:hover{
-transform:translateY(-2px);
-box-shadow:0 8px 20px rgba(37,92,193,.4);
+/* SLOT BUTTONS */
+.slot-grid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:10px;
 }
 
-.footer-links{
+.slot-grid input{
+display:none;
+}
+
+.slot-grid label{
+border:2px solid #9acbfd;
+padding:12px;
+border-radius:8px;
 text-align:center;
-margin-top:20px;
-font-size:.85em;
+cursor:pointer;
+font-size:0.9em;
 }
 
-.footer-links a{
-color:#255cc1;
-text-decoration:none;
+.slot-grid input:checked + label{
+background:#255cc1;
+color:#fff;
+border-color:#255cc1;
 }
 
-/* Modal */
 .modal{
 display:none;
 position:fixed;
@@ -182,58 +165,27 @@ fill:none;
 action="https://docs.google.com/forms/d/e/1FAIpQLSdZtgawwebaR-zUMMLmP3j_8AplduEXtuBVk0CNXZTjJpnFjA/formResponse"
 method="POST">
 
-<!-- Name -->
+<!-- 1. Full Name -->
 <div class="form-group">
 <label>Full Name *</label>
 <input type="text" id="name" name="entry.1164035048" required>
-<div class="error-message" id="nameError">Please enter valid name</div>
 </div>
 
-<!-- Email -->
+<!-- 2. Mobile -->
+<div class="form-group">
+<label>Mobile Number (Preferably WhatsApp) *</label>
+<input type="tel" id="phone" name="entry.1792445892" required>
+</div>
+
+<!-- 3. Email -->
 <div class="form-group">
 <label>Email ID *</label>
 <input type="email" name="entry.1111111111" required>
 </div>
 
-<!-- Phone -->
+<!-- 4. Education -->
 <div class="form-group">
-<label>Phone Number *</label>
-<input type="tel" id="phone" name="entry.1792445892" required>
-<div class="error-message" id="phoneError">Enter valid 10-digit number</div>
-</div>
-
-<!-- Country -->
-<div class="form-group">
-<label>Country Interested *</label>
-<select name="entry.2222222222" required>
-<option value="">Select</option>
-<option>Australia</option>
-<option>Canada</option>
-<option>Germany</option>
-<option>Others</option>
-</select>
-</div>
-
-<!-- Slot -->
-<div class="form-group">
-<label>Choose Slot *</label>
-<select name="entry.3333333333" required>
-<option value="">Select</option>
-<option>10am - 11am</option>
-<option>11am - 12pm</option>
-<option>12pm - 1pm</option>
-<option>1pm - 2pm</option>
-<option>2pm - 3pm</option>
-<option>3pm - 4pm</option>
-<option>4pm - 5pm</option>
-<option>5pm - 6pm</option>
-<option>6pm - 7pm</option>
-</select>
-</div>
-
-<!-- Education -->
-<div class="form-group">
-<label>Highest Education *</label>
+<label>Educational Qualification *</label>
 <select name="entry.4444444444" required>
 <option value="">Select</option>
 <option>10th / 12th</option>
@@ -244,7 +196,7 @@ method="POST">
 </select>
 </div>
 
-<!-- Experience -->
+<!-- 5. Experience -->
 <div class="form-group">
 <label>Work Experience *</label>
 <select name="entry.5555555555" required>
@@ -260,16 +212,60 @@ method="POST">
 </select>
 </div>
 
+<!-- 6. Country -->
+<div class="form-group">
+<label>Country Interested *</label>
+<select name="entry.2222222222" required>
+<option value="">Select</option>
+<option>Australia</option>
+<option>Canada</option>
+<option>Germany</option>
+<option>Others</option>
+</select>
+</div>
+
+<!-- 7. Slot Buttons -->
+<div class="form-group">
+<label>Choose the Slot *</label>
+
+<div class="slot-grid">
+
+<input type="radio" name="entry.3333333333" id="s1" value="10am - 11am" required>
+<label for="s1">10am - 11am</label>
+
+<input type="radio" name="entry.3333333333" id="s2" value="11am - 12pm">
+<label for="s2">11am - 12pm</label>
+
+<input type="radio" name="entry.3333333333" id="s3" value="12pm - 1pm">
+<label for="s3">12pm - 1pm</label>
+
+<input type="radio" name="entry.3333333333" id="s4" value="1pm - 2pm">
+<label for="s4">1pm - 2pm</label>
+
+<input type="radio" name="entry.3333333333" id="s5" value="2pm - 3pm">
+<label for="s5">2pm - 3pm</label>
+
+<input type="radio" name="entry.3333333333" id="s6" value="3pm - 4pm">
+<label for="s6">3pm - 4pm</label>
+
+<input type="radio" name="entry.3333333333" id="s7" value="4pm - 5pm">
+<label for="s7">4pm - 5pm</label>
+
+<input type="radio" name="entry.3333333333" id="s8" value="5pm - 6pm">
+<label for="s8">5pm - 6pm</label>
+
+<input type="radio" name="entry.3333333333" id="s9" value="6pm - 7pm">
+<label for="s9">6pm - 7pm</label>
+
+</div>
+</div>
+
 <button type="submit">Register Now</button>
+
 </form>
-
-<div class="footer-links">
-<a href="https://terratern.com/privacy-policy/" target="_blank">Privacy Policy</a> |
-<a href="https://terratern.com/terms-and-condition/" target="_blank">Terms</a>
-</div>
 </div>
 
-<!-- Modal -->
+<!-- THANK YOU MODAL -->
 <div class="modal" id="thankYouModal">
 <div class="modal-content">
 <div class="checkmark">
@@ -283,45 +279,29 @@ method="POST">
 </div>
 
 <script>
+const phone=document.getElementById("phone");
 const form=document.getElementById("jobForm");
-const nameInput=document.getElementById("name");
-const phoneInput=document.getElementById("phone");
 const modal=document.getElementById("thankYouModal");
 
-phoneInput.addEventListener("input",function(){
-this.value=this.value.replace(/\D/g,'').slice(0,10);
+phone.addEventListener("input",()=>{
+phone.value=phone.value.replace(/\D/g,'').slice(0,10);
 });
-
-function validateName(){
-return nameInput.value.trim().length>=2;
-}
-
-function validatePhone(){
-return /^\d{10}$/.test(phoneInput.value);
-}
 
 form.addEventListener("submit",function(e){
 e.preventDefault();
 
-if(validateName() && validatePhone()){
-
-const formData=new FormData(form);
+const data=new FormData(form);
 
 fetch(form.action,{
 method:"POST",
-body:formData,
+body:data,
 mode:"no-cors"
 }).then(()=>{
-
 modal.classList.add("show");
-
 setTimeout(()=>{
 window.location.href="https://terratern.com/document/sap-is-hiring-germany/";
 },5000);
-
 });
-
-}
 });
 </script>
 
